@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:project_structure/gradient_container.dart';
 
 // when writing arguments in curly braces, the positional nature of the
 // arguments is overridden and we have to manually define which value is
@@ -21,27 +20,11 @@ void sum2({int num1 = 0, int num2 = 0}) {
 void main() {
   // the main start of the file
   runApp(
-    MaterialApp(
+    const MaterialApp(
       title: 'Flutter App',
       home: Scaffold(
         // backgroundColor: Colors.deepPurple,
-        body: Container(
-          decoration: const BoxDecoration(
-            // default direction of gradient is left to right
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 26, 5, 105),
-                Color.fromARGB(255, 219, 13, 140),
-              ],
-              // changing the gradient from left-to-right TO top-to-bottom
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: const Center(
-            child: Text('Hello World!'),
-          ),
-        ),
+        body: GradientContainer(),
       ),
     ),
   );
