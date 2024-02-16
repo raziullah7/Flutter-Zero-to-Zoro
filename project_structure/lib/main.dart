@@ -24,7 +24,10 @@ void main() {
       title: 'Flutter App',
       home: Scaffold(
         // backgroundColor: Colors.deepPurple,
-        body: GradientContainer(),
+        body: GradientContainer([
+          Color.fromARGB(255, 26, 5, 105),
+          Color.fromARGB(255, 151, 42, 105),
+        ]),
       ),
     ),
   );
