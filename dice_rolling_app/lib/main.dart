@@ -20,7 +20,7 @@ void sum2({int num1 = 0, int num2 = 0}) {
 void main() {
   // the main start of the file
   runApp(
-    MaterialApp(
+    const MaterialApp(
       title: 'Flutter App',
       home: Scaffold(
         // backgroundColor: Colors.deepPurple,
