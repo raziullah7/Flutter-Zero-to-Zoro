@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/start_screen.dart';
 
 void main() {
   runApp(
@@ -16,30 +17,7 @@ void main() {
               end: Alignment.bottomRight,
             ),
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/quiz-logo.png', width: 300),
-                const SizedBox(height: 80),
-                const Text(
-                  'Learn Flutter the fun way!',
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 50),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      textStyle: const TextStyle(fontSize: 28)),
-                  child: const Text('Click Me!!'),
-                ),
-              ],
-            ),
-          ),
+          child: const StartScreen(),
         ),
       ),
     ),
