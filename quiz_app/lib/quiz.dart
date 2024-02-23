@@ -12,25 +12,41 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  // "?" to indicate that the given variable can be NULL
-  Widget? activeScreen;
+  // // // By initState // // //
+  // // "?" to indicate that the given variable can be NULL
+  // Widget? activeScreen;
 
-  // assigning activeScreen inside "initState" to avoid early runtime initialization
-  @override
-  void initState() {
-    activeScreen = StartScreen(switchScreen);
-    super.initState();
-  }
+  // // assigning activeScreen inside "initState" to avoid early runtime initialization
+  // @override
+  // void initState() {
+  //   activeScreen = StartScreen(switchScreen);
+  //   super.initState();
+  // }
+
+  // // // By Ternary Operator or IF Conditionals // // //
+  var activeScreen = 'start-screen';
 
   // method that changes the state
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      // activeScreen = const QuestionsScreen();
+      activeScreen = 'questions-screen';
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // By Ternary Operator
+    // final screenWidget = activeScreen == 'start-screen'
+    //     ? StartScreen(switchScreen)
+    //     : const QuestionsScreen();
+
+    // By if statements
+    Widget screenWidget = StartScreen(switchScreen);
+    if (activeScreen == 'questions-screen') {
+      screenWidget = const QuestionsScreen();
+    }
+
     return MaterialApp(
       title: 'Flutter Quiz',
       home: Scaffold(
@@ -45,7 +61,8 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen,
+          // child: activeScreen, // By initState
+          child: screenWidget,
         ),
       ),
     );
