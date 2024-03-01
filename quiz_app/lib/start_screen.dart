@@ -15,7 +15,7 @@ class StartScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // this approach gives a big performace hit (not recommended)
+          // this approach gives a big performance hit (not recommended)
           // Opacity(
           //   opacity: 0.6,
           //   child: Image.asset(

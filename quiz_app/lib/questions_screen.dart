@@ -14,6 +14,7 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   int currentQuestionIndex = 0;
+
   void answerQuestion() {
     setState(() {
       if (questions.length - 1 > currentQuestionIndex) {
