@@ -12,7 +12,7 @@ class QuizQuestion {
 
   // method
   List<String> getShuffledAnswers() {
-    final shuffledList = List.of(answers);
+    final List<String> shuffledList = List.of(answers);
     // shuffle only alter the list and not returns it
     shuffledList.shuffle();
     // it must be done with a shallow copy (variable) otherwise

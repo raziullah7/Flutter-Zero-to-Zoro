@@ -3,28 +3,34 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
+// custom class for the Questions Screen
 class QuestionsScreen extends StatefulWidget {
+  // fields
   final void Function(String answer) onSelectAnswer;
 
+  // constructor
   const QuestionsScreen({
     super.key,
     required this.onSelectAnswer,
   });
 
+  // createState() method for stateful widgets
   @override
   State<StatefulWidget> createState() {
     return _QuestionsScreenState();
   }
 }
 
+// required internal class for stateful widget
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  // variable to get question number from the list of question
   int currentQuestionIndex = 0;
 
-  void answerQuestion() {
+  // method to implement changes to the app dynamically
+  void answerQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
-      if (questions.length - 1 > currentQuestionIndex) {
-        currentQuestionIndex++;
-      }
+      currentQuestionIndex++;
     });
   }
 
@@ -55,7 +61,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ...currentQuestion.getShuffledAnswers().map(
                   (answer) => AnswerButton(
                     answerText: answer,
-                    onTap: answerQuestion,
+                    onTap: () => answerQuestion(answer),
                   ),
                 ),
           ],
