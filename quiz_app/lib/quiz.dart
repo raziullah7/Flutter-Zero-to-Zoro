@@ -24,6 +24,8 @@ class _QuizState extends State<Quiz> {
   // }
 
   // // // By Ternary Operator or IF Conditionals // // //
+  final List<String> selectedAnswers = [];
+
   var activeScreen = 'start-screen';
 
   // method that changes the state
@@ -32,6 +34,10 @@ class _QuizState extends State<Quiz> {
       // activeScreen = const QuestionsScreen();
       activeScreen = 'questions-screen';
     });
+  }
+
+  void ChooseAnswer(String answer) {
+    selectedAnswers.add(answer);
   }
 
   @override
@@ -44,7 +50,7 @@ class _QuizState extends State<Quiz> {
     // By if statements
     Widget screenWidget = StartScreen(switchScreen);
     if (activeScreen == 'questions-screen') {
-      screenWidget = const QuestionsScreen();
+      screenWidget = QuestionsScreen(onSelectAnswer: ChooseAnswer);
     }
 
     return MaterialApp(
