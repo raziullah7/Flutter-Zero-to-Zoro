@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 
+import 'data/questions.dart';
+
 class ResultsScreen extends StatelessWidget {
   // field
-  List<String> chosenAnswers;
+  final List<String> chosenAnswers;
 
   // constructor
-  ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen({super.key, required this.chosenAnswers});
+
+  // method to return the summary
+  List<Map<String, Object>> getSummaryData() {
+    // defining the list to be returned
+    final List<Map<String, Object>> summary = [];
+    // iterating over the list and mapping each question
+    for (int i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question_index': i,
+        'question': questions[i].text,
+        'correct_answer': questions[i].answers[0],
+        'user_answer': chosenAnswers[i],
+      });
+    }
+    // returning the list of maps
+    return summary;
+  }
 
   // the good old build method
   @override
