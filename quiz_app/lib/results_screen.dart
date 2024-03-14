@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:quiz_app/questions_summary/questions_summary.dart';
 import 'data/questions.dart';
 
 class ResultsScreen extends StatelessWidget {
   // field
   final List<String> chosenAnswers;
+  final void Function() startQuiz;
 
   // constructor
-  const ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen(
+      {super.key, required this.chosenAnswers, required this.startQuiz});
 
   // method to return the summary
   List<Map<String, Object>> getSummaryData() {
@@ -29,6 +31,16 @@ class ResultsScreen extends StatelessWidget {
   // the good old build method
   @override
   Widget build(BuildContext context) {
+    // important variables
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final numCorrectQuestions = summaryData
+        .where(
+          (e) => e['correct_answer'] == e['user_answer'],
+        )
+        .length;
+
+    // return of the build function
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -38,17 +50,31 @@ class ResultsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // the main heading text (the summary)
-            const Text("You got X out of Y correct!"),
+            Text(
+              "You got $numTotalQuestions out of $numCorrectQuestions correct!",
+              style: const TextStyle(
+                color: Color.fromARGB(255, 200, 150, 240),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             // some margin
             const SizedBox(height: 40),
             // inside scrollable element
-            const Text("Bruh"),
+            QuestionsSummary(summaryData),
             // some more margin
             const SizedBox(height: 40),
             // the retry button at the end
-            TextButton(
-              onPressed: () {},
-              child: const Text("Retry"),
+            TextButton.icon(
+              onPressed: startQuiz,
+              icon: const Icon(
+                Icons.restart_alt_rounded,
+                color: Colors.white,
+              ),
+              label: const Text(
+                "Retry",
+                style: TextStyle(color: Colors.white),
+              ),
             )
           ],
         ),
