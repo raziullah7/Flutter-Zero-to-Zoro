@@ -1,0 +1,5 @@
+*
+!**/.gitignore
+!**/lib
+!**/assets
+!**/pubspec.yaml
